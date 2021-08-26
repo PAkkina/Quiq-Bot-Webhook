@@ -6,7 +6,15 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
     const postalCode = req.body.conversation.custom.zipCode;
     const orderNumber = req.body.conversation.custom.orderNumber;
     try {
-        let response = await axios.get(`https://jsonplaceholder.typicode.com/todos`);
+        let response = await axios.get(`${constants.ORDER_DETAILS_API_URL}`, {
+            params: {
+                postalCode,
+                orderNumber
+            },
+            headers: {
+                'Host':"www.potterybarn.com"
+            },
+        });
         // let response = await axios.get(`${constants.ORDER_DETAILS_API_URL}`, {
         //     params: {
         //         postalCode,
@@ -20,9 +28,8 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
         //     },
         // });
         res.statusCode = 200;
-        res.json(response.data);
-        // let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber), waitForCustomerResponseOverride: { shouldWait: false } }
-        // res.json(responseObject);
+        let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber), waitForCustomerResponseOverride: { shouldWait: false } }
+        res.json(responseObject);
     }
     catch (e) {
         res.statusCode = 500;
