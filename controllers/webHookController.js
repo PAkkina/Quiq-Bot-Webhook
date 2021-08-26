@@ -8,6 +8,11 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
     try {
         let response = await axios({
             method: 'get',
+            headers: {
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept':'*/*',
+                'Content-Type':'application/json'
+            },
             url: `${constants.ORDER_DETAILS_API_URL}`,
             params: {
                 postalCode,
