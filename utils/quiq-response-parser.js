@@ -10,10 +10,23 @@ exports.createOrderDetailActions = (orderObj, zipCode, orderNumber) => {
         action: "sendMessage",
         message: {
             default: {
-                text : 'We found following items' 
+                text: 'We found following items'
             }
         }
     });
+    return actions;
+}
+
+exports.createErrorActions = () => {
+    const actions = [{
+        action: "sendMessage",
+        message: {
+            default: {
+                text: 'Somehting went wrong'
+            }
+        }
+    }
+    ]
     return actions;
 }
 
@@ -23,7 +36,7 @@ const createProductMessageAction = (orderItem, zipCode, orderNumber) => {
         action: "sendMessage",
         message: {
             default: {
-                text : orderItem.productInformation.mediumName,
+                text: orderItem.productInformation.mediumName,
                 card: {
                     title: "Please click to see your order details",
                     image: {
