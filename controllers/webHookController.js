@@ -13,16 +13,11 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
                 orderNumber
             },
         });
-        if (response.status == 403) {
-            console.log(`UnAuthorized`)
-            res.json({ actions: quiqResponseParser.createOrderDetailActions() });
-            return;
-        }
         let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber), waitForCustomerResponseOverride: { shouldWait: false } }
         res.json(responseObject);
     }
     catch (e) {
-        res.json({ actions: quiqResponseParser.createOrderDetailActions() });
+        res.json({ actions: quiqResponseParser.createErrorActions() });
         console.log(e);
     }
 
