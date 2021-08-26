@@ -9,10 +9,6 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
         let response = await axios({
             method: 'get',
             url: `${constants.ORDER_DETAILS_API_URL}`,
-            auth: {
-                username: `pbqaenv`,
-                password: `Bl@ck2ye`
-            },
             params: {
                 postalCode,
                 orderNumber
