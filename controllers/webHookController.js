@@ -1,20 +1,23 @@
+const constants = require('../constants/constants');
 const axios = require('axios');
-const constants = require('../constants/constants')
 const quiqResponseParser = require('../utils/quiq-response-parser')
 
 exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
     const postalCode = req.body.conversation.custom.zipCode;
     const orderNumber = req.body.conversation.custom.orderNumber;
+    const contactPointId = req.body.conversation.contactPointId;
+    console.log(req.body);
     res.statusCode = 200;
     try {
-        let response = await axios.get(`${constants.ORDER_DETAILS_API_URL}`, {
+        let response = await axios.get(`${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.ORDER_DETAILS_API_URL}`, {
             params: {
                 postalCode,
-                orderNumber
+                orderNumber,
+                contactPointId
             },
         });
         if (response.data.orderDetailBean.orderData) {
-            let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber), waitForCustomerResponseOverride: { shouldWait: false } }
+            let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber, contactPointId), waitForCustomerResponseOverride: { shouldWait: false } }
             res.json(responseObject);
         } else {
 

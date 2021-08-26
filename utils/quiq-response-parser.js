@@ -1,10 +1,10 @@
 const constants = require('../constants/constants')
 
-exports.createOrderDetailActions = (orderObj, zipCode, orderNumber) => {
+exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPointId) => {
     const { subOrders } = orderObj;
     const { items } = subOrders[0];
     const actions = items.map(item => {
-        return createProductMessageAction(item, zipCode, orderNumber);
+        return createProductMessageAction(item, zipCode, orderNumber, contactPointId);
     });
     actions.unshift({
         action: "sendMessage",
@@ -67,7 +67,7 @@ const addMandatoryActions = (actions) => {
 
 
 
-const createProductMessageAction = (orderItem, zipCode, orderNumber) => {
+const createProductMessageAction = (orderItem, zipCode, orderNumber, contactPointId) => {
     return {
         action: "sendMessage",
         message: {
@@ -79,7 +79,7 @@ const createProductMessageAction = (orderItem, zipCode, orderNumber) => {
                         publicUrl: orderItem.productInformation.images[0].url
                     },
                     link: {
-                        url: `${constants.ORDER_TRACKING_PAGE_URL}?z0=${zipCode}&ordernum=${orderNumber}`
+                        url: `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.ORDER_TRACKING_PAGE_URL}?z0=${zipCode}&ordernum=${orderNumber}`
                     }
                 },
             }
