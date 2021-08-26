@@ -12,6 +12,10 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
                 orderNumber
             },
         });
+        if (response.status == 403) {
+            res.statusCode = 200;
+            res.json({ actions: quiqResponseParser.createOrderDetailActions() });
+        }
         res.statusCode = 200;
         let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber), waitForCustomerResponseOverride: { shouldWait: false } }
         res.json(responseObject);
