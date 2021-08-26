@@ -14,7 +14,15 @@ exports.createOrderDetailActions = (orderObj, zipCode, orderNumber) => {
             }
         }
     });
-    return actions;
+    addMandatoryActions(actions);
+    const reducedActions = actions.reduce((prev, element, i) => {
+        if (i < 6) {
+            prev.push(element);
+        }
+        return prev;
+    }, []);
+
+    return reducedActions;
 }
 
 exports.createErrorActions = () => {
@@ -25,10 +33,38 @@ exports.createErrorActions = () => {
                 text: 'Somehting went wrong'
             }
         }
-    }
-    ]
+    }]
+    addMandatoryActions(actions);
     return actions;
 }
+
+
+exports.createOrderNotFoundActions = () => {
+    const actions = [{
+        action: "sendMessage",
+        message: {
+            default: {
+                text: `Sorry we couldn't find your order please make sure you entered the correct order number and postal code`
+            }
+        }
+    }
+    ]
+    addMandatoryActions(actions);
+    return actions;
+}
+
+const addMandatoryActions = (actions) => {
+    return actions.unshift({
+        action: "setField",
+        field: "conversation.custom.zipCode",
+        value: null
+    }, {
+        action: "setField",
+        field: "conversation.custom.orderNumber",
+        value: null
+    });
+}
+
 
 
 const createProductMessageAction = (orderItem, zipCode, orderNumber) => {
@@ -50,3 +86,6 @@ const createProductMessageAction = (orderItem, zipCode, orderNumber) => {
         }
     }
 }
+
+
+

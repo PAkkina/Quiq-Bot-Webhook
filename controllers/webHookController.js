@@ -13,8 +13,15 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
                 orderNumber
             },
         });
-        let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber), waitForCustomerResponseOverride: { shouldWait: false } }
-        res.json(responseObject);
+        if (response.data.orderDetailBean.orderData) {
+            let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber), waitForCustomerResponseOverride: { shouldWait: false } }
+            res.json(responseObject);
+        } else {
+
+            let responseObject = { actions: quiqResponseParser.createOrderNotFoundActions(), waitForCustomerResponseOverride: { shouldWait: false } }
+            res.json(responseObject);
+        }
+
     }
     catch (e) {
         res.json({ actions: quiqResponseParser.createErrorActions() });
