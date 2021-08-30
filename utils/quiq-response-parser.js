@@ -30,7 +30,7 @@ exports.createErrorActions = () => {
         action: "sendMessage",
         message: {
             default: {
-                text: 'Somehting went wrong'
+                text: 'Something went wrong'
             }
         }
     }]
