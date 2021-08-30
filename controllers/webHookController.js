@@ -24,7 +24,6 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
             let responseObject = { actions: quiqResponseParser.createOrderNotFoundActions(), waitForCustomerResponseOverride: { shouldWait: false } }
             res.json(responseObject);
         }
-
     }
     catch (e) {
         res.json({ actions: quiqResponseParser.createErrorActions() });

@@ -24,7 +24,7 @@ exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPoint
             }
         }
     });
-    addMandatoryActions(actions);
+    // addMandatoryActions(actions);
     const reducedActions = actions.reduce((prev, element, i) => {
         if (i < 6) {
             prev.push(element);
@@ -44,7 +44,7 @@ exports.createErrorActions = () => {
             }
         }
     }]
-    addMandatoryActions(actions);
+    // addMandatoryActions(actions);
     return actions;
 }
 
@@ -59,20 +59,20 @@ exports.createOrderNotFoundActions = () => {
         }
     }
     ]
-    addMandatoryActions(actions);
+    // addMandatoryActions(actions);
     return actions;
 }
 
 const addMandatoryActions = (actions) => {
-    return actions.unshift({
-        action: "setField",
-        field: "conversation.custom.zipCode",
-        value: null
-    }, {
-        action: "setField",
-        field: "conversation.custom.orderNumber",
-        value: null
-    });
+    // return actions.unshift({
+    //     action: "setField",
+    //     field: "conversation.custom.zipCode",
+    //     value: null
+    // }, {
+    //     action: "setField",
+    //     field: "conversation.custom.orderNumber",
+    //     value: null
+    // });
 }
 
 
