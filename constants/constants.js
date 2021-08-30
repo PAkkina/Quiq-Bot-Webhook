@@ -4,7 +4,7 @@ const ORDER_URLS = {
 }
 
 const BRAND_HOSTNAMES = {
-    'pottery-barn' : 'https://www.potterybarn.com',
+    'pottery-barn' : 'https://www.williams-sonoma.com',
     'williams-sonoma' : 'https://www.williams-sonoma.com'
 }
 
