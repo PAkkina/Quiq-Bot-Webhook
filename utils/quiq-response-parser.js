@@ -3,8 +3,18 @@ const constants = require('../constants/constants')
 exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPointId) => {
     const { subOrders } = orderObj;
     const { items } = subOrders[0];
+    var deliveryStatus;
+    const statusFound = subOrders[0].deliveryGroups[0].displaySteps.find( (step) => step.active );
+
+    if (!statusFound) {
+        deliveryStatus = statusFound.title;
+    } else {
+        deliveryStatus = "Delivered";
+    }
+       
     const actions = items.map(item => {
-        return createProductMessageAction(item, zipCode, orderNumber, contactPointId);
+        console.log(item);
+        return createProductMessageAction(item, zipCode, orderNumber, contactPointId, deliveryStatus);
     });
     actions.unshift({
         action: "sendMessage",
@@ -67,14 +77,15 @@ const addMandatoryActions = (actions) => {
 
 
 
-const createProductMessageAction = (orderItem, zipCode, orderNumber, contactPointId) => {
+const createProductMessageAction = (orderItem, zipCode, orderNumber, contactPointId, deliveryStatus) => {
     return {
         action: "sendMessage",
         message: {
             default: {
                 text: orderItem.productInformation.mediumName,
                 card: {
-                    title: "Please click to see your order details",
+                    title: deliveryStatus,
+                    subTitle: "Please click to see your order details",
                     image: {
                         publicUrl: orderItem.productInformation.images[0].url
                     },
