@@ -6,7 +6,7 @@ exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPoint
     var deliveryStatus;
     const statusFound = subOrders[0].deliveryGroups[0].displaySteps.find( (step) => step.active );
 
-    if (!statusFound) {
+    if (statusFound) {
         deliveryStatus = statusFound.title;
     } else {
         deliveryStatus = "Delivered";
