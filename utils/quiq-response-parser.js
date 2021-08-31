@@ -2,19 +2,21 @@ const constants = require('../constants/constants')
 
 exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPointId) => {
     const { subOrders } = orderObj;
-    const { items } = subOrders[0];
-    var deliveryStatus;
-    const statusFound = subOrders[0].deliveryGroups[0].displaySteps.find( (step) => step.active );
-
-    if (statusFound) {
-        deliveryStatus = statusFound.title;
-    } else {
-        deliveryStatus = "Delivered";
+    const { items, deliveryGroups } = subOrders && subOrders[0];
+    const deliveryGroup = deliveryGroups && deliveryGroups[0];
+    let statusFound, deliveryDate, trackingId;
+    if (deliveryGroup) {
+        statusFound = deliveryGroup && deliveryGroup.displaySteps && deliveryGroup.displaySteps.find((step) => step.active);
+        deliveryDate = deliveryGroup && deliveryGroup.deliveryEstimate.displayDate;
+        trackingId = deliveryGroup && deliveryGroup.packages && deliveryGroup.packages.tracking && deliveryGroup.packages.tracking.id;
     }
-       
-    const actions = items.map(item => {
-        console.log(item);
-        return createProductMessageAction(item, zipCode, orderNumber, contactPointId, deliveryStatus);
+    const deliveryStatus = statusFound ? statusFound.title : "Delivered";
+
+
+
+    const actions = items.map(orderItem => {
+        console.log(orderItem);
+        return createProductMessageAction({ orderItem, zipCode, orderNumber, contactPointId, deliveryStatus, deliveryDate, trackingId });
     });
     actions.unshift({
         action: "sendMessage",
@@ -26,7 +28,7 @@ exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPoint
     });
     // addMandatoryActions(actions);
     const reducedActions = actions.reduce((prev, element, i) => {
-        if (i < 6) {
+        if (i < 4) {
             prev.push(element);
         }
         return prev;
@@ -77,14 +79,15 @@ const addMandatoryActions = (actions) => {
 
 
 
-const createProductMessageAction = (orderItem, zipCode, orderNumber, contactPointId, deliveryStatus) => {
+const createProductMessageAction = (orderInfo) => {
+    const { orderItem, zipCode, orderNumber, contactPointId, deliveryStatus, deliveryDate, trackingId } = orderInfo;
     return {
         action: "sendMessage",
         message: {
             default: {
-                text: orderItem.productInformation.mediumName,
+                text: `${orderItem.productInformation.mediumName} ${trackingId?trackingId:''}`,
                 card: {
-                    title: deliveryStatus,
+                    title: `${deliveryStatus} ${deliveryDate}`,
                     subTitle: "Please click to see your order details",
                     image: {
                         publicUrl: orderItem.productInformation.images[0].url
