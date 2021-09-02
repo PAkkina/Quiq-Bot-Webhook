@@ -8,7 +8,7 @@ exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPoint
     if (deliveryGroup) {
         statusFound = deliveryGroup && deliveryGroup.displaySteps && deliveryGroup.displaySteps.find((step) => step.active);
         deliveryDate = deliveryGroup && deliveryGroup.deliveryEstimate.displayDate;
-        trackingId = deliveryGroup && deliveryGroup.packages && deliveryGroup.packages.tracking && deliveryGroup.packages.tracking.id;
+        trackingId = deliveryGroup && deliveryGroup.packages[0] && deliveryGroup.packages[0].tracking[0] && deliveryGroup.packages[0].tracking[0].id;
     }
     const deliveryStatus = statusFound ? statusFound.title : "Delivered";
 
