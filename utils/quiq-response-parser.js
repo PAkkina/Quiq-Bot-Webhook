@@ -1,5 +1,25 @@
 const constants = require('../constants/constants')
 
+
+exports.createOrderHistoryActions = ()=>{
+
+}
+
+exports.createOrderHistoryNotFoundActions = ()=>{
+    const actions = [{
+        action: "sendMessage",
+        message: {
+            default: {
+                text: `Sorry we couldn't find any order against your account order please make sure you entered the correct order number and postal code`
+            }
+        }
+    }
+    ]
+    // addMandatoryActions(actions);
+    return actions;
+}
+
+
 exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPointId) => {
     const { subOrders } = orderObj;
     const { items, deliveryGroups } = subOrders && subOrders[0];
@@ -8,7 +28,7 @@ exports.createOrderDetailActions = (orderObj, zipCode, orderNumber, contactPoint
     if (deliveryGroup) {
         statusFound = deliveryGroup && deliveryGroup.displaySteps && deliveryGroup.displaySteps.find((step) => step.active);
         deliveryDate = deliveryGroup && deliveryGroup.deliveryEstimate.displayDate;
-        trackingId = deliveryGroup && deliveryGroup.packages[0] && deliveryGroup.packages[0].tracking[0] && deliveryGroup.packages[0].tracking[0].id;
+        trackingId = deliveryGroup && deliveryGroup.packages && deliveryGroup.packages[0] && deliveryGroup.packages[0].tracking[0] && deliveryGroup.packages[0].tracking[0].id;
     }
     const deliveryStatus = statusFound ? statusFound.title : "Delivered";
 

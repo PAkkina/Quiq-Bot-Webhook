@@ -1,0 +1,43 @@
+<script src="https://wsi-stage.quiq-api.com/app/webchat/index.js" charset="UTF-8"></script>
+
+
+<body>
+    <form id='myForm'>
+        <label>First Name</label>
+        <input name="fullName" />
+        <label>Cookie</label>
+        <input name="cookie" />
+        <button type="submit">Start Chat</button>
+    </form>
+    <button type="submit" onclick="initializeChat()">Start chat (without user data)</button>
+</body>
+
+
+<script>
+    function initializeChat(obj) {
+
+        window.chat = Quiq({
+            contactPoint: 'pottery-barn',
+            welcomeMessages: [
+                obj ? `Hi ${obj.fullName}, What's up?` : null,
+            ],
+            context: {
+                intent: obj ? "isLoggedIn" : null,
+                data: obj ? obj : null
+            }
+        });
+    }
+    const form = document.getElementById('myForm');
+    form.addEventListener('submit', (event) => {
+        // stop form submission
+        event.preventDefault();
+        const fullName = form.elements['fullName'].value;
+        const cookie = form.elements['cookie'].value;
+        const contextData = {
+            fullName,
+            cookie
+        }
+        initializeChat(contextData);
+    });
+
+</script>

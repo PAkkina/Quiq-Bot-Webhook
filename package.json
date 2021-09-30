@@ -3,7 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./dist/server.js",
+    "build-ci": "rm -rf dist && webpack --mode development",
+    "build": "rm -rf dist && webpack --mode development",
+    "swiffer-ci": "echo swiffer",
+    "lint-ci": "echo lint",
+    "test-ci": "echo test",
+    "test-integration-ci": "echo testci",
+    "test-component-ci": "echo testComponent"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -13,5 +20,12 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
