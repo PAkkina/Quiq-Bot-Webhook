@@ -48,7 +48,8 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
         }
     }
     catch (e) {
-        res.json({ actions: quiqResponseParser.createErrorActions() });
+        res.statusCode = 500;
+        res.json(e);
         console.log(e);
     }
 
