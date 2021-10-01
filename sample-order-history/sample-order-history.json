@@ -1,0 +1,14 @@
+{
+    "data": {
+        "orderHistoryBean": {
+            "data": [
+                {
+                    "orderNumber" : "310073842299",
+                    "posttalCode" : "92592"
+                }
+            ],
+            "metadata": null,
+            "orderErrors": []
+        }
+    }
+}

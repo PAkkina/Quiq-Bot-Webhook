@@ -1,0 +1,468 @@
+{
+    "data": {
+        "orderDetailBean": {
+            "orderData": {
+                "conceptCode": "WS",
+                "omsOrderId": "314072569960",
+                "type": "SALES",
+                "orderTime": {
+                    "offset": {
+                        "totalSeconds": -28800,
+                        "id": "-08:00",
+                        "rules": {
+                            "fixedOffset": true,
+                            "transitions": [],
+                            "transitionRules": []
+                        }
+                    },
+                    "zone": {
+                        "totalSeconds": -28800,
+                        "id": "-08:00",
+                        "rules": {
+                            "fixedOffset": true,
+                            "transitions": [],
+                            "transitionRules": []
+                        }
+                    },
+                    "year": 2021,
+                    "month": "JANUARY",
+                    "monthValue": 1,
+                    "dayOfMonth": 7,
+                    "hour": 15,
+                    "minute": 58,
+                    "second": 33,
+                    "nano": 0,
+                    "dayOfWeek": "THURSDAY",
+                    "dayOfYear": 7,
+                    "chronology": {
+                        "calendarType": "iso8601",
+                        "id": "ISO"
+                    }
+                },
+                "returnable": false,
+                "loyaltyId": null,
+                "programMemberships": null,
+                "taxExemption": null,
+                "billingAddress": {
+                    "name": {
+                        "title": null,
+                        "firstName": "Amanda",
+                        "middleName": null,
+                        "lastName": "Alvarado",
+                        "suffix": null
+                    },
+                    "fullName": null,
+                    "address": {
+                        "destinationServiceAddressLines": null,
+                        "destinationType": null,
+                        "serviceLocationId": null,
+                        "company": null,
+                        "city": "San Antonio",
+                        "stateProvince": "TX",
+                        "destinationServicePostalCode": null,
+                        "country": "US",
+                        "county": null,
+                        "verificationStatus": "verified",
+                        "classification": null,
+                        "state": "TX"
+                    },
+                    "contacts": [
+                        {
+                            "isPrimary": false
+                        },
+                        {
+                            "isPrimary": false
+                        }
+                    ]
+                },
+                "promotions": null,
+                "subOrders": [
+                    {
+                        "omsSubOrderId": "01",
+                        "shipTo": {
+                            "name": {
+                                "title": null,
+                                "firstName": "Alma",
+                                "middleName": null,
+                                "lastName": "Alvarado",
+                                "suffix": null
+                            },
+                            "fullName": "Alma Alvarado",
+                            "address": {
+                                "destinationServiceAddressLines": null,
+                                "destinationType": null,
+                                "serviceLocationId": null,
+                                "company": null,
+                                "city": "Santa Elena",
+                                "stateProvince": "TX",
+                                "destinationServicePostalCode": null,
+                                "country": "US",
+                                "county": null,
+                                "verificationStatus": "Y",
+                                "classification": "CS",
+                                "state": "TX"
+                            },
+                            "contacts": [
+                                {
+                                    "isPrimary": false
+                                }
+                            ],
+                            "nickName": null,
+                            "isProvidedByRegistrant": false
+                        },
+                        "pickUp": null,
+                        "serviceLevel": "STANDARD",
+                        "holdDate": null,
+                        "holdEvent": null,
+                        "valueAddedServices": [
+                            {
+                                "type": "giftmessage",
+                                "location": null,
+                                "properties": [
+                                    {
+                                        "name": "message",
+                                        "value": "Happy Birthday!!! Love, Lalo,"
+                                    },
+                                    {
+                                        "name": "message",
+                                        "value": "Mandy, Tony, and Diego"
+                                    }
+                                ],
+                                "charges": null,
+                                "prices": null
+                            }
+                        ],
+                        "items": [
+                            {
+                                "conceptCode": "WS",
+                                "itemId": "6897192",
+                                "omsLineId": "1",
+                                "quantity": 1,
+                                "pricing": {
+                                    "prices": [
+                                        {
+                                            "type": "unit",
+                                            "modifier": "Regular",
+                                            "amount": 99.95
+                                        },
+                                        {
+                                            "type": "surcharge",
+                                            "modifier": "Discount",
+                                            "amount": 0.0
+                                        },
+                                        {
+                                            "type": "lineTotal",
+                                            "modifier": "Regular",
+                                            "amount": 126.59
+                                        },
+                                        {
+                                            "type": "lineTotalWithoutTax",
+                                            "modifier": "Regular",
+                                            "amount": 116.94
+                                        },
+                                        {
+                                            "type": "extendedPrice",
+                                            "modifier": "Regular",
+                                            "amount": 99.95
+                                        },
+                                        {
+                                            "type": "lineComputedTotal",
+                                            "modifier": "Regular",
+                                            "amount": 99.95
+                                        }
+                                    ],
+                                    "isFreeShip": false,
+                                    "isFreePz": false
+                                },
+                                "associateDiscount": null,
+                                "valueAddedServices": [
+                                    {
+                                        "type": "giftmessage",
+                                        "location": null,
+                                        "properties": [
+                                            {
+                                                "name": "message",
+                                                "value": "Happy Birthday!!! Love, Lalo,"
+                                            },
+                                            {
+                                                "name": "message",
+                                                "value": "Mandy, Tony, and Diego"
+                                            }
+                                        ],
+                                        "charges": null,
+                                        "prices": null
+                                    }
+                                ],
+                                "registryListReference": null,
+                                "charges": null,
+                                "productInformation": {
+                                    "name": "Cuisinart Custom Classic Toaster Oven Broiler",
+                                    "shortName": "Csnrt Cls Toaster Ov",
+                                    "mediumName": "Cuisinart Custom Classic Toaster Ov",
+                                    "longName": "Cuisinart Custom Classic Toaster Oven Broiler",
+                                    "copy": null,
+                                    "images": [
+                                        {
+                                            "type": "SKUPRIME",
+                                            "url": "https://www.williams-sonoma.com/wsimgs/ab/images/dp/wcm/202139/0460/img51l.jpg"
+                                        }
+                                    ]
+                                },
+                                "components": null,
+                                "returnableWhenEligible": true
+                            }
+                        ],
+                        "gifts": [
+                            {
+                                "valueAddedServices": null,
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "omsLineId": "1",
+                                        "omsSubLineId": null,
+                                        "omsSubLineIds": null,
+                                        "packageRefs": null,
+                                        "displaySteps": null,
+                                        "deliveryNumber": 0,
+                                        "totalDeliveries": 0
+                                    }
+                                ]
+                            }
+                        ],
+                        "abandonedDestinationPickupItemInTheSubOrder": false,
+                        "isGift": false,
+                        "isAbandonedDestinationPickupItemInTheSubOrder": false,
+                        "deliveryGroups": [
+                            {
+                                "displaySteps": [
+                                    {
+                                        "title": "Ordered",
+                                        "description": "Ordered",
+                                        "imageKey": "ORDERED",
+                                        "sequenceId": 1,
+                                        "date": null,
+                                        "displayable": true,
+                                        "completed": true,
+                                        "functionalTag": null,
+                                        "active": false
+                                    },
+                                    {
+                                        "title": "Backordered",
+                                        "description": "Backordered",
+                                        "imageKey": "BACKORDERED",
+                                        "sequenceId": 3,
+                                        "date": null,
+                                        "displayable": false,
+                                        "completed": true,
+                                        "functionalTag": null,
+                                        "active": false
+                                    },
+                                    {
+                                        "title": "On Hold Per Your Request",
+                                        "description": "On Hold Per Your Request",
+                                        "imageKey": "HOLD",
+                                        "sequenceId": 4,
+                                        "date": null,
+                                        "displayable": false,
+                                        "completed": true,
+                                        "functionalTag": null,
+                                        "active": false
+                                    },
+                                    {
+                                        "title": "Preparing to Ship",
+                                        "description": "Preparing to Ship",
+                                        "imageKey": "PREPARING_FOR_SHIP",
+                                        "sequenceId": 5,
+                                        "date": null,
+                                        "displayable": true,
+                                        "completed": true,
+                                        "functionalTag": null,
+                                        "active": false
+                                    },
+                                    {
+                                        "title": "Shipped",
+                                        "description": "Shipped",
+                                        "imageKey": "SHIPPED",
+                                        "sequenceId": 6,
+                                        "date": null,
+                                        "displayable": true,
+                                        "completed": true,
+                                        "functionalTag": null,
+                                        "active": false
+                                    },
+                                    {
+                                        "title": "Delivered",
+                                        "description": "Delivered",
+                                        "imageKey": "COMPLETED",
+                                        "sequenceId": 7,
+                                        "date": null,
+                                        "displayable": true,
+                                        "completed": true,
+                                        "functionalTag": null,
+                                        "active": false
+                                    }
+                                ],
+                                "deliveryEstimate": {
+                                    "titleLabel": "Delivered",
+                                    "displayDate": "January 11, 2021",
+                                    "scheduledAppointmentStartTime": null,
+                                    "scheduledAppointmentEndTime": null,
+                                    "scheduledAppointmentZoneId": null,
+                                    "scheduledAppointmentZoneOffset": null,
+                                    "revisedToFutureDate": false,
+                                    "activeCyodd": false
+                                },
+                                "model": "CONVEYABLE/DROPSHIP",
+                                "packages": [
+                                    {
+                                        "id": "2021010818502429074819",
+                                        "tracking": [
+                                            {
+                                                "carrier": "UPS",
+                                                "id": "1Z5RX9730320577794",
+                                                "trackingLink": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "omsLineId": "1",
+                                        "omsSubLineId": null,
+                                        "omsSubLineIds": null,
+                                        "packageRefs": [
+                                            {
+                                                "id": "2021010818502429074819",
+                                                "quantity": 1
+                                            }
+                                        ],
+                                        "displaySteps": [
+                                            {
+                                                "title": "Ordered",
+                                                "description": "Ordered",
+                                                "imageKey": "ORDERED",
+                                                "sequenceId": 1,
+                                                "date": null,
+                                                "displayable": true,
+                                                "completed": true,
+                                                "functionalTag": null,
+                                                "active": false
+                                            },
+                                            {
+                                                "title": "Backordered",
+                                                "description": "Backordered",
+                                                "imageKey": "BACKORDERED",
+                                                "sequenceId": 3,
+                                                "date": null,
+                                                "displayable": false,
+                                                "completed": true,
+                                                "functionalTag": null,
+                                                "active": false
+                                            },
+                                            {
+                                                "title": "On Hold Per Your Request",
+                                                "description": "On Hold Per Your Request",
+                                                "imageKey": "HOLD",
+                                                "sequenceId": 4,
+                                                "date": null,
+                                                "displayable": false,
+                                                "completed": true,
+                                                "functionalTag": null,
+                                                "active": false
+                                            },
+                                            {
+                                                "title": "Preparing to Ship",
+                                                "description": "Preparing to Ship",
+                                                "imageKey": "PREPARING_FOR_SHIP",
+                                                "sequenceId": 5,
+                                                "date": null,
+                                                "displayable": true,
+                                                "completed": true,
+                                                "functionalTag": null,
+                                                "active": false
+                                            },
+                                            {
+                                                "title": "Shipped",
+                                                "description": "Shipped",
+                                                "imageKey": "SHIPPED",
+                                                "sequenceId": 6,
+                                                "date": null,
+                                                "displayable": true,
+                                                "completed": true,
+                                                "functionalTag": null,
+                                                "active": false
+                                            },
+                                            {
+                                                "title": "Delivered",
+                                                "description": "Delivered",
+                                                "imageKey": "COMPLETED",
+                                                "sequenceId": 7,
+                                                "date": null,
+                                                "displayable": true,
+                                                "completed": true,
+                                                "functionalTag": null,
+                                                "active": false
+                                            }
+                                        ],
+                                        "deliveryNumber": 1,
+                                        "totalDeliveries": 1
+                                    }
+                                ],
+                                "sortDate": {
+                                    "startDate": null,
+                                    "endDate": {
+                                        "year": 2021,
+                                        "month": "JANUARY",
+                                        "chronology": {
+                                            "calendarType": "iso8601",
+                                            "id": "ISO"
+                                        },
+                                        "monthValue": 1,
+                                        "dayOfMonth": 11,
+                                        "dayOfWeek": "MONDAY",
+                                        "era": "CE",
+                                        "dayOfYear": 11,
+                                        "leapYear": false
+                                    },
+                                    "type": "ACTUAL",
+                                    "appointment": false
+                                },
+                                "inHomeDeliveryAlertType": "NONE"
+                            }
+                        ]
+                    }
+                ],
+                "totals": [
+                    {
+                        "type": "Order",
+                        "amount": 126.59
+                    },
+                    {
+                        "type": "LineShippingEffective",
+                        "amount": 16.99
+                    },
+                    {
+                        "type": "LineMerchEffective",
+                        "amount": 99.95
+                    },
+                    {
+                        "type": "MerchTax",
+                        "amount": 8.25
+                    },
+                    {
+                        "type": "ShippingTax",
+                        "amount": 1.4
+                    }
+                ],
+                "relatedOrders": null,
+                "userIsLoggedInAndAuthorized": false,
+                "scheduledAppointmentStartTime": null,
+                "scheduledAppointmentEndTime": null,
+                "scheduledAppointmentZoneId": null,
+                "scheduleDisplayDate": "January 11, 2021"
+            },
+            "orderErrors": null
+        }
+    }
+}

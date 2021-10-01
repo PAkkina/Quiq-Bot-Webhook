@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
+
 module.exports = {
   entry: {
     server: './bin/www',
@@ -24,15 +26,26 @@ module.exports = {
         // Loads the javacript into html template provided.
         // Entry point is set below in HtmlWebPackPlugin in Plugins 
         test: /\.html$/,
-        use: [{loader: "html-loader"}]
+        use: [{ loader: "html-loader" }]
       }
     ]
   },
   plugins: [
+    new CopyWebpackPlugin(
+      {
+        patterns: [
+          {
+            from: "sample-orders/*.json",
+            to({ context, absoluteFilename }) {
+              return "[name].json";
+            },
+          },
+        ],
+      }),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html",
-      excludeChunks: [ 'server' ]
+      excludeChunks: ['server']
     })
   ]
 }
