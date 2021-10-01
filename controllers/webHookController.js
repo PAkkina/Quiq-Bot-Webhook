@@ -2,6 +2,7 @@ const constants = require('../constants/constants');
 const axios = require('axios');
 const quiqResponseParser = require('../utils/quiq-response-parser');
 const sampleOrderService = require('../sample-orders/sample-orders-service')
+const sampleOrderHistoryService = require('../sample-order-history/sample-order-history-service')
 
 exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
     console.log(req);
@@ -20,9 +21,9 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
         let response;
         if (context && context.intent === 'isLoggedIn') {
             const url = `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.USER_ORDERS_API_URL}`;
-            response = await getUserOrdersByCookie(context.data.cookie);
+            response = await sampleOrderHistoryService.getOrderByIdAndZipCode();
             if (response.data && response.data.orderHistoryBean && response.data.orderHistoryBean.data) {
-                let responseObject = { actions: quiqResponseParser.createOrderHistoryActions(response.data.orderDetailBean.data, contactPointId), waitForCustomerResponseOverride: { shouldWait: false } }
+                let responseObject = { actions: quiqResponseParser.createOrderHistoryActions(response.data.orderHistoryBean.data, contactPointId), waitForCustomerResponseOverride: { shouldWait: false } }
                 res.json(responseObject);
             } else {
                 let responseObject = { actions: quiqResponseParser.createOrderHistoryNotFoundActions(), waitForCustomerResponseOverride: { shouldWait: false } }

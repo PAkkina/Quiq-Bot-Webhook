@@ -1,11 +1,32 @@
 const constants = require('../constants/constants')
 
 
-exports.createOrderHistoryActions = ()=>{
+exports.createOrderHistoryActions = (orders, contactPointId) => {
 
+
+    const actions = orders.map(order => {
+        return createOrderMessageAction(order,contactPointId);
+    });
+    actions.unshift({
+        action: "sendMessage",
+        message: {
+            default: {
+                text: 'We found following orders'
+            }
+        }
+    });
+    // addMandatoryActions(actions);
+    const reducedActions = actions.reduce((prev, element, i) => {
+        if (i < 4) {
+            prev.push(element);
+        }
+        return prev;
+    }, []);
+
+    return reducedActions;
 }
 
-exports.createOrderHistoryNotFoundActions = ()=>{
+exports.createOrderHistoryNotFoundActions = () => {
     const actions = [{
         action: "sendMessage",
         message: {
@@ -97,7 +118,24 @@ const addMandatoryActions = (actions) => {
     // });
 }
 
-
+const createOrderMessageAction = (orderInfo,contactPointId) => {
+    const { orderNumber, postalCode } = orderInfo;
+    return {
+        action: "sendMessage",
+        message: {
+            default: {
+                text: `${orderNumber}`,
+                card: {
+                    title: `${orderNumber}`,
+                    subTitle: "Please click to see your order details",
+                    link: {
+                        url: `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.ORDER_TRACKING_PAGE_URL}?z0=${postalCode}&ordernum=${orderNumber}`
+                    }
+                },
+            }
+        }
+    }
+}
 
 const createProductMessageAction = (orderInfo) => {
     const { orderItem, zipCode, orderNumber, contactPointId, deliveryStatus, deliveryDate, trackingId } = orderInfo;
@@ -105,7 +143,7 @@ const createProductMessageAction = (orderInfo) => {
         action: "sendMessage",
         message: {
             default: {
-                text: `${orderItem.productInformation.mediumName} ${trackingId?trackingId:''}`,
+                text: `${orderItem.productInformation.mediumName} ${trackingId ? trackingId : ''}`,
                 card: {
                     title: `${deliveryStatus} ${deliveryDate}`,
                     subTitle: "Please click to see your order details",

@@ -7,7 +7,7 @@ const ORDER_URLS = {
 const BRAND_HOSTNAMES = {
     'new-contaact-point': "https://www.williams-sonoma.com",
     // 'new-contaact-point': "https://www.potterybarn.com",
-    'pottery-barn': "https://www.potterybarn.com",
+    'pottery-barn': "https://www.williams-sonoma.com",
     'williams-sonoma': 'https://www.williams-sonoma.com'
 }
 

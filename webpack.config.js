@@ -40,6 +40,12 @@ module.exports = {
               return "[name].json";
             },
           },
+          {
+            from: "sample-order-history/*.json",
+            to({ context, absoluteFilename }) {
+              return "[name].json";
+            },
+          },
         ],
       }),
     new HtmlWebPackPlugin({
