@@ -4,11 +4,11 @@
             "data": [
                 {
                     "orderNumber" : "310073842299",
-                    "posttalCode" : "92592"
+                    "postalCode" : "92592"
                 },
                 {
                     "orderNumber" : "314072569960",
-                    "posttalCode" : "78256"
+                    "postalCode" : "78256"
                 }
             ],
             "metadata": null,
