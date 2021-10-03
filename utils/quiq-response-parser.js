@@ -124,9 +124,9 @@ const createOrderMessageAction = (orderInfo,contactPointId) => {
         action: "sendMessage",
         message: {
             default: {
-                text: `${orderNumber}`,
+                text: `Order#: ${orderNumber}`,
                 card: {
-                    title: `${orderNumber}`,
+                    title: `${orderInfo.displayDate}`,
                     subTitle: "Please click to see your order details",
                     link: {
                         url: `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.ORDER_TRACKING_PAGE_URL}?z0=${postalCode}&ordernum=${orderNumber}`
