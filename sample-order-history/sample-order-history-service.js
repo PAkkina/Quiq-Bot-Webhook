@@ -2,7 +2,7 @@ const fs = require('fs');
 
 
 
-exports.getOrderByIdAndZipCode = () => {
+exports.getOrders = () => {
     let obj;
     let promise = new Promise((resolve, reject) => {
         fs.readFile(`${__dirname}/sample-order-history.json`, 'utf8', function (err, data) {

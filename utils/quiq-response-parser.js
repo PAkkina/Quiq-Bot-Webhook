@@ -4,26 +4,12 @@ const constants = require('../constants/constants')
 exports.createOrderHistoryActions = (orders, contactPointId) => {
 
 
-    const actions = orders.map(order => {
-        return createOrderMessageAction(order, contactPointId);
+    const replies = orders.map(order => {
+        return createOrderMessageReplies(order, contactPointId);
     });
-    actions.unshift({
-        action: "sendMessage",
-        message: {
-            default: {
-                text: 'We found following orders'
-            }
-        }
-    });
-    // addMandatoryActions(actions);
-    const reducedActions = actions.reduce((prev, element, i) => {
-        if (i < 4) {
-            prev.push(element);
-        }
-        return prev;
-    }, []);
+    const actions = [createOrderMessageAction(replies)];
 
-    return reducedActions;
+    return actions;
 }
 
 exports.createOrderHistoryNotFoundActions = () => {
@@ -117,23 +103,33 @@ const addMandatoryActions = (actions) => {
     //     value: null
     // });
 }
+const createOrderMessageReplies = (orderInfo) => {
+    return {
+        "text": `Order#: ${orderInfo.orderNumber}`,
+        "directives": {
+            "fieldUpdates": [
+                {
+                    field: `schema.conversation.custom.orderNumber`,
+                    value: orderInfo.orderNumber
+                },
+                {
+                    field: `schema.conversation.custom.zipCode`,
+                    value: orderInfo.postalCode
+                }
+            ],
+        },
+    }
+}
 
-const createOrderMessageAction = (orderInfo, contactPointId) => {
-    const { orderNumber, postalCode } = orderInfo;
+
+const createOrderMessageAction = (replies) => {
     return {
         action: "sendMessage",
         message: {
             default: {
-                text: `Order#: ${orderNumber}`,
-                card: {
-                    title: `${orderInfo.displayDate}`,
-                    subTitle: "Please click to see your order details",
-                    image: {
-                        publicUrl: `https://i.imgur.com/kWjYWzQ.png`
-                    },
-                    link: {
-                        url: `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.ORDER_TRACKING_PAGE_URL}?z0=${postalCode}&ordernum=${orderNumber}`
-                    }
+                text: `We found following, please select from below`,
+                quiqReply: {
+                    replies: replies
                 },
             }
         }
