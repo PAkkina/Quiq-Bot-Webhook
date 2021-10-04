@@ -22,6 +22,7 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
         response = await sampleOrderService.getOrderByIdAndZipCode(orderNumber, postalCode);
         if (response.data && response.data.orderDetailBean && response.data.orderDetailBean.orderData) {
             let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber, contactPointId), waitForCustomerResponseOverride: { shouldWait: false } }
+            console.log(response);
             res.json(responseObject);
         } else {
 
@@ -54,8 +55,10 @@ exports.getUserOrders = async (req, res, next) => {
         let response;
         const url = `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.USER_ORDERS_API_URL}`;
         response = await sampleOrderHistoryService.getOrders();
+        console.log(response);
         if (response.data && response.data.orderHistoryBean && response.data.orderHistoryBean.data) {
             let responseObject = { actions: quiqResponseParser.createOrderHistoryActions(response.data.orderHistoryBean.data, contactPointId), waitForCustomerResponseOverride: { shouldWait: true } }
+            console.log(response);
             res.json(responseObject);
         } else {
             let responseObject = { actions: quiqResponseParser.createOrderHistoryNotFoundActions(), waitForCustomerResponseOverride: { shouldWait: false } }
