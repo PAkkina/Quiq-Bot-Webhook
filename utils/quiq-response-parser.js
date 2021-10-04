@@ -129,7 +129,7 @@ const createOrderMessageAction = (orderInfo, contactPointId) => {
                     title: `${orderInfo.displayDate}`,
                     subTitle: "Please click to see your order details",
                     image: {
-                        publicUrl: ``
+                        publicUrl: `https://i.imgur.com/kWjYWzQ.png`
                     },
                     link: {
                         url: `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.ORDER_TRACKING_PAGE_URL}?z0=${postalCode}&ordernum=${orderNumber}`
