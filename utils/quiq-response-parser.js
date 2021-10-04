@@ -5,7 +5,7 @@ exports.createOrderHistoryActions = (orders, contactPointId) => {
 
 
     const actions = orders.map(order => {
-        return createOrderMessageAction(order,contactPointId);
+        return createOrderMessageAction(order, contactPointId);
     });
     actions.unshift({
         action: "sendMessage",
@@ -118,7 +118,7 @@ const addMandatoryActions = (actions) => {
     // });
 }
 
-const createOrderMessageAction = (orderInfo,contactPointId) => {
+const createOrderMessageAction = (orderInfo, contactPointId) => {
     const { orderNumber, postalCode } = orderInfo;
     return {
         action: "sendMessage",
@@ -128,6 +128,9 @@ const createOrderMessageAction = (orderInfo,contactPointId) => {
                 card: {
                     title: `${orderInfo.displayDate}`,
                     subTitle: "Please click to see your order details",
+                    image: {
+                        publicUrl: `https://assets.wsimgs.com/wsimgs/ab/images/i/202140/0009/images/common/logo.svg`
+                    },
                     link: {
                         url: `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.ORDER_TRACKING_PAGE_URL}?z0=${postalCode}&ordernum=${orderNumber}`
                     }
