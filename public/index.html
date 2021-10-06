@@ -17,6 +17,7 @@
     function initializeChat(obj) {
 
         window.chat = Quiq({
+            position: { left: '20px' },
             contactPoint: 'pottery-barn',
             welcomeMessages: [
                 obj ? `Hi ${obj.fullName}, What's up?` : null,
