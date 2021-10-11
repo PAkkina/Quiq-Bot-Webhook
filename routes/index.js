@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path')
+var webHookController = require('../controllers/web-hook.controller')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -17,5 +18,9 @@ router.get('/', function (req, res, next) {
 
   res.sendFile(HTML_FILE);
 });
+
+//web hook route
+router.post('/webhook', webHookController.getOrderDetailByOrderNumberAndpostalCode);
+
 
 module.exports = router;
