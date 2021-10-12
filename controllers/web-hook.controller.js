@@ -1,8 +1,7 @@
 const constants = require('../constants/constants');
 const axios = require('axios');
 const quiqResponseParser = require('../utils/quiq-response-parser');
-const sampleOrderService = require('../sample-orders/sample-orders-service')
-const sampleOrderHistoryService = require('../sample-order-history/sample-order-history-service')
+const orderService = require('../services/order.service')
 
 exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
     console.log(req);
@@ -12,14 +11,14 @@ exports.getOrderDetailByOrderNumberAndpostalCode = async (req, res, next) => {
         return;
     }
     const context = req.body.conversation.webData && req.body.conversation.webData.context;
-    const postalCode = req.body.conversation.custom && req.body.conversation.custom.zipCode;
-    const orderNumber = req.body.conversation.custom && req.body.conversation.custom.orderNumber;
+    const postalCode = req.body.conversation.customer && req.body.conversation.customer.custom.zipCode;
+    const orderNumber = req.body.conversation.customer && req.body.conversation.customer.custom.orderNumber;
     const contactPointId = req.body.conversation.contactPointId;
     const pageNumber = 1;
     res.statusCode = 200;
     try {
         let response;
-        response = await sampleOrderService.getOrderByIdAndZipCode(orderNumber, postalCode);
+        response = await orderService.getOrderByIdAndZipCode(orderNumber, postalCode);
         if (response.data && response.data.orderDetailBean && response.data.orderDetailBean.orderData) {
             let responseObject = { actions: quiqResponseParser.createOrderDetailActions(response.data.orderDetailBean.orderData, postalCode, orderNumber, contactPointId), waitForCustomerResponseOverride: { shouldWait: false } }
             console.log(response);
@@ -54,7 +53,7 @@ exports.getUserOrders = async (req, res, next) => {
     try {
         let response;
         const url = `${constants.BRAND_HOSTNAMES[contactPointId]}${constants.ORDER_URLS.USER_ORDERS_API_URL}`;
-        response = await sampleOrderHistoryService.getOrders();
+        response = await orderService.getOrders();
         console.log(response);
         if (response.data && response.data.orderHistoryBean && response.data.orderHistoryBean.data) {
             let responseObject = { actions: quiqResponseParser.createOrderHistoryActions(response.data.orderHistoryBean.data, contactPointId), waitForCustomerResponseOverride: { shouldWait: true } }
