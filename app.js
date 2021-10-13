@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var indexRouter = require('./routes/index');
 var logger = require('morgan');
+const basicAuthentication = require('./auth/auth');
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'images')));
 
+app.use(basicAuthentication);
 app.use(indexRouter);
 // app.use('/webhook', webHookRouter);
 
