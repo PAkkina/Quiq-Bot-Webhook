@@ -109,11 +109,11 @@ const createOrderMessageReplies = (orderInfo) => {
         "directives": {
             "fieldUpdates": [
                 {
-                    field: `schema.conversation.custom.orderNumber`,
+                    field: `schema.conversation.customer.custom.orderNumber`,
                     value: orderInfo.orderNumber
                 },
                 {
-                    field: `schema.conversation.custom.zipCode`,
+                    field: `schema.conversation.customer.custom.zipCode`,
                     value: orderInfo.postalCode
                 }
             ],
